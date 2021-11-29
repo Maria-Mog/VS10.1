@@ -8,6 +8,8 @@ namespace VS10._1
 {
     class Program
     {
+        // Считаем, что угол не больше 360град., в противном случае нужно убрать ограничения расчета радиан. 
+        // Вопрос: Как сделать прерывание программы, если вводится отрицательное значение мин. или сек. (при вводе положительного значения угла и отр-го зан. мин./сек. программа расчитает радианы)
         static void Main(string[] args)
         {
             Console.Write("Ввелите ед.измерения угла\n - градусы = ");
@@ -28,13 +30,22 @@ namespace VS10._1
 
             public int Gradus
             {
+
                 get
                 {
                     return gradus;
                 }
                 set
                 {
-                    gradus = value;
+                    if (value >= 0)
+                    {
+                        gradus = value;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Введите положительное значение");                       
+                    }                    
                 }
             }
             public int Min
@@ -45,7 +56,16 @@ namespace VS10._1
                 }
                 set
                 {
-                    min = value;
+                    if (value >= 0)
+                    {
+                        min = value;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Введите положительное значение");
+                    }
+                    
                 }
 
             }
@@ -57,7 +77,16 @@ namespace VS10._1
                 }
                 set
                 {
-                    sec = value;
+                    if (value >= 0)
+                    {
+                        sec = value;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Введите положительное значение");
+                    }
+                    
                 }
 
             }
@@ -73,7 +102,7 @@ namespace VS10._1
                 double radians = (Gradus + Min / 60 + Sec / 3600) * (Math.PI) / 180;
                 if (radians >= 0 && radians < 6.2832)
                 {
-                    Console.WriteLine("Угол равен {0:.0000} радиан", radians);
+                    Console.WriteLine("Угол равен {0:0.0000} радиан", radians);
                 }
                 else
                 {
